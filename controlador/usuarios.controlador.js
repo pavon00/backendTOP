@@ -61,6 +61,30 @@ exports.getRolesById = function(id, req, res) {
   });
 };
 
+exports.getFollowsById = function(id, req, res) {
+  User.getFollowsById(id, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
+exports.createFollowsById = function(idFollower, idFollowing, req, res) {
+  User.createFollowsById(idFollower, idFollowing, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
+exports.deleteFollowsById = function(idFollower, idFollowing, req, res) {
+  User.deleteFollowsById(idFollower, idFollowing, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};
+
 exports.update = function(req, res) {
   if(req.body.constructor === Object && Object.keys(req.body).length === 0){
     res.status(400).send({ error:true, message: 'Por favor, proporcione todos los campos requeridos' });
